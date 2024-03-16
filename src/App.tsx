@@ -7,8 +7,9 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 
 import "./App.scss"
-import SignUp from './pages/auth/signUp/signUp';
-import SignIn from './pages/auth/signIn/signIn';
+import SignUp from './pages/auth/signUp/SignUp';
+import SignIn from './pages/auth/signIn/SignIn';
+
 
 setupIonicReact();
 

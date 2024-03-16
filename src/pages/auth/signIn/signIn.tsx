@@ -1,5 +1,5 @@
 import { IonPage } from "@ionic/react";
-import "./signIn.scss"
+import "./SignIn.scss"
 import React from "react";
 
 const SignIn: React.FC = () => {

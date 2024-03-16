@@ -1,5 +1,5 @@
 import { IonBackdrop, IonButton, IonInput, IonLoading, IonPage, IonSpinner } from "@ionic/react";
-import "./signUp.scss"
+import "./SignUp.scss"
 import { useState } from "react";
 import ParkInput from "../../../components/ParkInput";
 
