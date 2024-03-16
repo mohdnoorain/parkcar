@@ -18,7 +18,7 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Route path="/signUp" component={SignUp} />
         <Route path="/signIn" component={SignIn} />
-        <Redirect exact from="/" to="/signIn" />
+        <Redirect exact from="/" to="/signUp" />
         <Route render={() => <Redirect to={'/'} />} />
       </IonRouterOutlet>
     </IonReactRouter>

@@ -26,7 +26,8 @@ const SignUp: React.FC = () => {
     }
 
     const signUp = () => {
-        setLoaderFor("submit")
+        setLoaderFor("submit");
+
     }
 
     return (
