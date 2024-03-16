@@ -1,0 +1,23 @@
+.SignUp {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+
+    h2 {
+        color: black;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+}
+
+ion-loading.custom-loading {
+    --background: #ffffff !important;
+    --spinner-color: #1c6dff;
+
+    color: #000000;
+}
