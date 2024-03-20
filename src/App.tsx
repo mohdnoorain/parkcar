@@ -8,7 +8,6 @@ import { IonReactRouter } from '@ionic/react-router';
 
 import "./App.scss"
 import SignUp from './pages/auth/signUp/SignUp';
-import SignIn from './pages/auth/signIn/SignIn';
 
 
 setupIonicReact();
@@ -18,7 +17,6 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Route path="/signUp" component={SignUp} />
-        <Route path="/signIn" component={SignIn} />
         <Redirect exact from="/" to="/signUp" />
         <Route render={() => <Redirect to={'/'} />} />
       </IonRouterOutlet>
