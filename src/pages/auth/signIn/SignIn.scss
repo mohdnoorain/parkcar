@@ -61,10 +61,21 @@
 
                     }
 
+                    /* Change the placeholder color for invalid input */
+                    input.invalid {
+                        border: 1px solid red;
+
+                    }
+
+                    .InPassword {
+                        margin: 0;
+                        color: red;
+                    }
+
                     button {
-                        position: absolute;
-                        top: 168px;
-                        right: 36px;
+                        position: relative;
+                        top: -34px;
+                        left: 303px;
                         background-color: #F6F6F6;
                         color: #5DB075;
                         font-size: 16px;

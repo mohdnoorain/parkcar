@@ -9,6 +9,9 @@ import { IonReactRouter } from '@ionic/react-router';
 import "./App.scss"
 import SignUp from './pages/auth/signUp/SignUp';
 import SignIn from './pages/auth/signIn/SignIn';
+import EmailRecoveryPage from "./pages/auth/PasswordFortgotPage/EmailRecoveryPage";
+import OtpPage from './pages/auth/PasswordFortgotPage/OtpPage';
+import CreateNewPassword from './pages/auth/PasswordFortgotPage/CreateNewPasswordPage';
 
 
 setupIonicReact();
@@ -19,6 +22,9 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Route path="/signUp" component={SignUp} />
         <Route path="/signIn" component={SignIn} />
+        <Route path="/recoverypage" component={EmailRecoveryPage} />
+        <Route path="/OtpPage" component={OtpPage} />
+        <Route path="/createpassword" component={CreateNewPassword} />
         <Redirect exact from="/" to="/signUp" />
         <Route render={() => <Redirect to={'/'} />} />
       </IonRouterOutlet>
