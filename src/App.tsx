@@ -9,9 +9,9 @@ import { IonReactRouter } from '@ionic/react-router';
 import "./App.scss"
 import SignUp from './pages/auth/signUp/SignUp';
 import SignIn from './pages/auth/signIn/SignIn';
-import EmailRecoveryPage from "./pages/auth/PasswordFortgotPage/EmailRecoveryPage";
-import OtpPage from './pages/auth/PasswordFortgotPage/OtpPage';
-import CreateNewPassword from './pages/auth/PasswordFortgotPage/CreateNewPasswordPage';
+import EmailRecoveryPage from "./pages/auth/passwordFortgotPage/EmailRecoveryPage";
+import OtpPage from './pages/auth/passwordFortgotPage/OtpPage';
+import CreateNewPassword from './pages/auth/passwordFortgotPage/CreateNewPasswordPage';
 
 
 setupIonicReact();
