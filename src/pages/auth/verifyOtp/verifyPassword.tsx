@@ -1,15 +1,16 @@
 import { IonPage } from "@ionic/react";
-import "./OtpPage.scss";
+import "./verifyPassword.scss";
 import { useState } from "react";
-const OtpPage: React.FC = () => {
+const verifyPassword: React.FC = () => {
     const [Otp, setOtp] = useState(['', '', '', '']);
     const handleChange = (index: any, e: any) => {
         const value = e.target.value;
-        if (!isNaN(value) && value === '') return false;
+        // if ( value === '') return false;
         const newOtp = [...Otp];
         newOtp[index] = value;
         setOtp(newOtp);
         if (e.target.nextSibling) {
+            if(value === '') return ;
             e.target.nextSibling.focus();
         }
     }
@@ -19,7 +20,7 @@ const OtpPage: React.FC = () => {
         console.log('Entered OTP:', enteredOtp);
         // Clear OTP after submission
         setOtp(['', '', '', '']);
-        window.location.href ="http://localhost:8100/createpassword"
+        window.location.href = "http://localhost:8100/createpassword"
     }
 
     const handleOnBack = (e: any) => {
@@ -35,12 +36,11 @@ const OtpPage: React.FC = () => {
                     <h1>Email Verification</h1>
                 </div>
                 <div className="pMiddleContent">
-                    <h1>Get Your code</h1>
-                    <p>Please enter the 4 digit that send to your email address</p>
+                    <p>Please enter the 4 digit that <br></br> send to your email address</p>
                 </div>
                 <div className="DigitOtp">
                     {Otp.map((digit, index) => (
-                        <input type="text"
+                        <input type="number"
                             key={index}
                             maxLength={1}
                             value={digit}
@@ -60,4 +60,4 @@ const OtpPage: React.FC = () => {
     </IonPage>
 }
 
-export default OtpPage;
+export default verifyPassword;

@@ -1,7 +1,7 @@
 import { IonPage } from "@ionic/react";
-import "./CreateNewPassword.scss";
+import "./resetPassword.scss";
 import { useState } from "react";
-const CreateNewPassword: React.FC = () => {
+const resetPassword: React.FC = () => {
     // use state for taking input of user
     const [formData, setFormData] = useState({
         password: '',
@@ -43,7 +43,6 @@ const CreateNewPassword: React.FC = () => {
                     <h1>Reset Password</h1>
                 </div>
                 <div className="pMiddleContent">
-                    <h1>Enter New Passwprd</h1>
                     <p>Your new password must be different</p>
                     <p>from previously used password</p>
                 </div>
@@ -71,4 +70,4 @@ const CreateNewPassword: React.FC = () => {
     </IonPage>
 }
 
-export default CreateNewPassword;
+export default resetPassword;

@@ -1,7 +1,10 @@
 import { IonPage } from "@ionic/react";
-import "./EmailRecoveryPage.scss";
+import "./ForgotPassword.scss";
 import { useState } from "react";
-const EmailRecoveryPage: React.FC = () => {
+import { useHistory } from "react-router";
+const ForgotPassword: React.FC = () => {
+
+    const history = useHistory()
     // use state for taking input of user
     const [formData, setFormData] = useState({
         email: '',
@@ -21,15 +24,16 @@ const EmailRecoveryPage: React.FC = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         setisValid(emailRegex.test(formData.email));
         console.log('Email :', formData.email);
-        window.location.href = "http://localhost:8100/OtpPage";
+        // window.location.href = "http://localhost:8100/OtpPage";
+        history.push("/OtpPage")
     }
 
     const handleOnBack = (e: any) => {
         e.preventDefault();
         console.log("back is clicked");
-        window.history.back();
+        history.goBack();
     }
-    return <IonPage className="EmailRecoveryPage">
+    return <IonPage className="ForgotPassword">
         <form onSubmit={handleSubmit} className="PageContent" >
             <div className="HalfPage">
                 <div className="pHeading">
@@ -37,7 +41,6 @@ const EmailRecoveryPage: React.FC = () => {
                     <h1>Forgot Password</h1>
                 </div>
                 <div className="pMiddleContent">
-                    <h1>Mail Address here</h1>
                     <p>Enter your email to recover your password </p>
                 </div>
                 <input type="text"
@@ -56,4 +59,4 @@ const EmailRecoveryPage: React.FC = () => {
     </IonPage>
 }
 
-export default EmailRecoveryPage;
+export default ForgotPassword;

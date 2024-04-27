@@ -22,7 +22,7 @@ const SignUp: React.FC = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
- 
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Name : ', formData.name);
@@ -32,17 +32,20 @@ const SignUp: React.FC = () => {
     setisValid(emailRegex.test(formData.email));
     console.log('Email : ', formData.email);
     console.log('Password : ', formData.password);
+
+    
+
   }
   const [ShowPassword, setShowPassword] = useState(false);
   let ShowPass = "show";
   let HidePass = "hide";
 
-  const HandleShowPassword = (e:any) => {
-   e.preventDefault();
+  const HandleShowPassword = (e: any) => {
+    e.preventDefault();
     setShowPassword(!ShowPassword);
   }
- 
- 
+
+
 
 
   return (
@@ -85,14 +88,14 @@ const SignUp: React.FC = () => {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                className={validPassword? 'valid' : 'invalid'}
+                className={validPassword ? 'valid' : 'invalid'}
               />
               <button onClick={HandleShowPassword}>
                 {ShowPassword ? HidePass : ShowPass}
               </button>
               {!validPassword && <p className="InPassword" >Please enter a valid password</p>}
             </div>
-          </div> 
+          </div>
           {/* bottom form  */}
           <div className="bottomForm">
             <div className="checkBox">
@@ -108,7 +111,7 @@ const SignUp: React.FC = () => {
               Sign Up
             </button>
 
-            <a href="/recoverypage">Forgot your password?</a>
+            <a href="/forgotPassword">Forgot your password?</a>
           </div>
 
         </form>
