@@ -3,7 +3,7 @@ import "./SignUp.scss";
 import React from "react";
 import { useState } from "react";
 
-const SignUp: React.FC = () => {
+const SignUp = () => {
   // use state for taking input of user
   const [formData, setFormData] = useState({
     name: '',
@@ -33,7 +33,7 @@ const SignUp: React.FC = () => {
     console.log('Email : ', formData.email);
     console.log('Password : ', formData.password);
 
-    
+
 
   }
   const [ShowPassword, setShowPassword] = useState(false);

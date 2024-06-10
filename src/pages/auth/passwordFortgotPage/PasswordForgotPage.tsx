@@ -1,7 +1,8 @@
 import { IonPage } from "@ionic/react";
 import "./EmailRecoveryPage.scss";
 import { useState } from "react";
-const EmailRecoveryPage: React.FC = () => {
+
+const EmailRecoveryPage = () => {
     // use state for taking input of user
     const [formData, setFormData] = useState({
         email: '',

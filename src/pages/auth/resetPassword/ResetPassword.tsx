@@ -1,7 +1,7 @@
 import { IonPage } from "@ionic/react";
-import "./resetPassword.scss";
+import "./ResetPassword.scss";
 import { useState } from "react";
-const resetPassword: React.FC = () => {
+const ResetPassword = () => {
     // use state for taking input of user
     const [formData, setFormData] = useState({
         password: '',
@@ -30,7 +30,7 @@ const resetPassword: React.FC = () => {
             setsamePassword(true);
         }
     }
-    const handleOnBack =(e:any)=>{
+    const handleOnBack = (e: any) => {
         e.preventDefault();
         console.log("back is clicked");
         window.history.back();
@@ -38,7 +38,7 @@ const resetPassword: React.FC = () => {
     return <IonPage className="EmailRecoveryPage">
         <form onSubmit={handleSubmit} className="PageContent">
             <div className="HalfPage">
-                <div className="pHeading">  
+                <div className="pHeading">
                     <button onClick={handleOnBack} className="BackBtn"> &#60;</button>
                     <h1>Reset Password</h1>
                 </div>
@@ -70,4 +70,4 @@ const resetPassword: React.FC = () => {
     </IonPage>
 }
 
-export default resetPassword;
+export default ResetPassword;

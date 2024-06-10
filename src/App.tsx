@@ -9,24 +9,23 @@ import { IonReactRouter } from '@ionic/react-router';
 import "./App.scss"
 import SignUp from './pages/auth/signUp/SignUp';
 import SignIn from './pages/auth/signIn/SignIn';
-import EmailRecoveryPage from "./pages/auth/passwordFortgotPage/passwordForgotPage";
-import OtpPage from './pages/auth/verifyOtp/verifyPassword';
-import CreateNewPassword from './pages/auth/resetPassword/resetPassword';
 import ForgotPassword from './pages/auth/forgotPassword/ForgotPassword';
 import Home from './pages/user/Home/Home';
+import verifyPassword from './pages/auth/verifyOtp/verifyPassword';
+import ResetPassword from './pages/auth/resetPassword/resetPassword';
 
 
 setupIonicReact();
 
-const App: React.FC = () => (
+const App = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
         <Route path="/signUp" component={SignUp} />
         <Route path="/signIn" component={SignIn} />
         <Route path="/forgotPassword" component={ForgotPassword} />
-        <Route path="/OtpPage" component={OtpPage} />
-        <Route path="/createpassword" component={CreateNewPassword} />
+        <Route path="/otpPage" component={verifyPassword} />
+        <Route path="/resetPassword" component={ResetPassword} />
         <Route path="/home" component={Home} />
         <Redirect exact from="/" to="/signUp" />
         <Route render={() => <Redirect to={'/'} />} />

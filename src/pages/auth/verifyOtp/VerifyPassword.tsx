@@ -1,7 +1,8 @@
 import { IonPage } from "@ionic/react";
 import "./verifyPassword.scss";
 import { useState } from "react";
-const verifyPassword: React.FC = () => {
+
+const verifyPassword = () => {
     const [Otp, setOtp] = useState(['', '', '', '']);
     const handleChange = (index: any, e: any) => {
         const value = e.target.value;
@@ -10,7 +11,7 @@ const verifyPassword: React.FC = () => {
         newOtp[index] = value;
         setOtp(newOtp);
         if (e.target.nextSibling) {
-            if(value === '') return ;
+            if (value === '') return;
             e.target.nextSibling.focus();
         }
     }

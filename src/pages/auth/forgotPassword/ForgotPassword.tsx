@@ -2,7 +2,7 @@ import { IonPage } from "@ionic/react";
 import "./ForgotPassword.scss";
 import { useState } from "react";
 import { useHistory } from "react-router";
-const ForgotPassword: React.FC = () => {
+const ForgotPassword = () => {
 
     const history = useHistory()
     // use state for taking input of user

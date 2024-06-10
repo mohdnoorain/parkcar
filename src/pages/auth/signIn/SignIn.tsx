@@ -3,7 +3,7 @@ import "./SignIn.scss";
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router";
-const SignIn: React.FC = () => {
+const SignIn = () => {
 
   const history = useHistory()
   // use state for taking input of user
@@ -31,7 +31,7 @@ const SignIn: React.FC = () => {
     setvalidPassword(passwordRegex.test(formData.password));
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setisValid(emailRegex.test(formData.email));
-    
+
     // history.push('')
   };
   const [ShowPassword, setShowPassword] = useState(false);
