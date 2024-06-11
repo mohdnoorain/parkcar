@@ -11,8 +11,8 @@ import SignUp from './pages/auth/signUp/SignUp';
 import SignIn from './pages/auth/signIn/SignIn';
 import ForgotPassword from './pages/auth/forgotPassword/ForgotPassword';
 import Home from './pages/user/Home/Home';
-import verifyPassword from './pages/auth/verifyOtp/verifyPassword';
-import ResetPassword from './pages/auth/resetPassword/resetPassword';
+import VerifyPassword from './pages/auth/verifyOtp/VerifyPassword';
+import ResetPassword from './pages/auth/resetPassword/ResetPassword';
 
 
 setupIonicReact();
@@ -24,7 +24,7 @@ const App = () => (
         <Route path="/signUp" component={SignUp} />
         <Route path="/signIn" component={SignIn} />
         <Route path="/forgotPassword" component={ForgotPassword} />
-        <Route path="/otpPage" component={verifyPassword} />
+        <Route path="/otpPage" component={VerifyPassword} />
         <Route path="/resetPassword" component={ResetPassword} />
         <Route path="/home" component={Home} />
         <Redirect exact from="/" to="/signUp" />

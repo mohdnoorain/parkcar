@@ -1,7 +1,8 @@
 import { IonPage } from "@ionic/react";
-import "./ResetPassword.scss";
+import { MdOutlineArrowBackIos } from "react-icons/md";
+import "./resetPassword.scss";
 import { useState } from "react";
-const ResetPassword = () => {
+const resetPassword = () => {
     // use state for taking input of user
     const [formData, setFormData] = useState({
         password: '',
@@ -35,24 +36,37 @@ const ResetPassword = () => {
         console.log("back is clicked");
         window.history.back();
     }
+
+    const [ShowPassword, setShowPassword] = useState(false);
+    let ShowPass = "show";
+    let HidePass = "hide";
+
+    const HandleShowPassword = (e: any) => {
+        e.preventDefault();
+        setShowPassword(!ShowPassword);
+    }
     return <IonPage className="EmailRecoveryPage">
         <form onSubmit={handleSubmit} className="PageContent">
             <div className="HalfPage">
                 <div className="pHeading">
-                    <button onClick={handleOnBack} className="BackBtn"> &#60;</button>
+                    <MdOutlineArrowBackIos onClick={handleOnBack} className="BackBtn" />
                     <h1>Reset Password</h1>
                 </div>
                 <div className="pMiddleContent">
                     <p>Your new password must be different</p>
                     <p>from previously used password</p>
                 </div>
-                <input type="password"
+                <input
+                    type={ShowPassword ? "text" : "password"}
                     name="password"
                     placeholder="Password"
                     value={formData.password}
                     onChange={handleChange}
                     className={validPassword ? 'valid' : 'invalid'}
                 />
+                <button className= "ShowPassword"onClick={HandleShowPassword}>
+                    {ShowPassword ? HidePass : ShowPass}
+                </button>
                 {!validPassword && <p className="InPassword" >Please enter a valid password</p>}
                 <input type="text"
                     name="confirmPassword"
@@ -70,4 +84,4 @@ const ResetPassword = () => {
     </IonPage>
 }
 
-export default ResetPassword;
+export default resetPassword;

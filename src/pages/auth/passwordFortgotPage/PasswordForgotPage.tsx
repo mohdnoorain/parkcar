@@ -1,8 +1,8 @@
 import { IonPage } from "@ionic/react";
+import { MdOutlineArrowBackIos } from "react-icons/md";
 import "./EmailRecoveryPage.scss";
 import { useState } from "react";
-
-const EmailRecoveryPage = () => {
+const EmailRecoveryPage= () => {
     // use state for taking input of user
     const [formData, setFormData] = useState({
         email: '',
@@ -34,7 +34,7 @@ const EmailRecoveryPage = () => {
         <form onSubmit={handleSubmit} className="PageContent" >
             <div className="HalfPage">
                 <div className="pHeading">
-                    <button onClick={handleOnBack} className="BackBtn"> &#60;</button>
+                    <MdOutlineArrowBackIos onClick={handleOnBack} className="BackBtn" />
                     <h1>Forgot Password</h1>
                 </div>
                 <div className="pMiddleContent">

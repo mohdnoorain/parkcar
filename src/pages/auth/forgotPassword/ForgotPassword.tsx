@@ -1,4 +1,5 @@
 import { IonPage } from "@ionic/react";
+import { MdOutlineArrowBackIos } from "react-icons/md";
 import "./ForgotPassword.scss";
 import { useState } from "react";
 import { useHistory } from "react-router";
@@ -37,7 +38,8 @@ const ForgotPassword = () => {
         <form onSubmit={handleSubmit} className="PageContent" >
             <div className="HalfPage">
                 <div className="pHeading">
-                    <button onClick={handleOnBack} className="BackBtn"> &#60;</button>
+                    <MdOutlineArrowBackIos onClick={handleOnBack} className="BackBtn" />
+                    
                     <h1>Forgot Password</h1>
                 </div>
                 <div className="pMiddleContent">
@@ -50,7 +52,7 @@ const ForgotPassword = () => {
                     onChange={handleChange}
                     className={isValid ? 'valid' : 'invalid'}
                 />
-                {!isValid && <p className="InPassword">Please enter a valid email</p>}
+                {!isValid && <p className="InPassword" style={{color:"red"}}>Please enter a valid email</p>}
             </div>
             <div className="pBottomContent">
                 <button>Recover Password</button>

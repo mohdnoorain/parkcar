@@ -33,7 +33,7 @@ const SignUp = () => {
     console.log('Email : ', formData.email);
     console.log('Password : ', formData.password);
 
-
+    
 
   }
   const [ShowPassword, setShowPassword] = useState(false);
@@ -53,6 +53,7 @@ const SignUp = () => {
       <div className="pageContent">
 
         <div className="pHeading">
+          
           <div>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</div>
           <h1>Sign Up</h1>
           <a href="/signIn"><button>Log in</button></a>
@@ -102,6 +103,7 @@ const SignUp = () => {
               <input
                 id="terms"
                 type="checkbox"
+                className="LargeCheckBox"
               />
               <label htmlFor="terms">
                 I would like to receive your newsletter and other promotional information.
@@ -111,7 +113,7 @@ const SignUp = () => {
               Sign Up
             </button>
 
-            <a href="/forgotPassword">Forgot your password?</a>
+           
           </div>
 
         </form>

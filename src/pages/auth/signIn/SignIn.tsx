@@ -3,7 +3,7 @@ import "./SignIn.scss";
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router";
-const SignIn = () => {
+const SignIn= () => {
 
   const history = useHistory()
   // use state for taking input of user
@@ -31,7 +31,7 @@ const SignIn = () => {
     setvalidPassword(passwordRegex.test(formData.password));
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setisValid(emailRegex.test(formData.email));
-
+    
     // history.push('')
   };
   const [ShowPassword, setShowPassword] = useState(false);
@@ -46,7 +46,9 @@ const SignIn = () => {
     <IonPage className="SignInPage">
       <div className="pageContent">
         <div className="pHeading">
+          <div>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</div>
           <h1>Log In</h1>
+          <a href="/signUp"><button>Sign Up</button></a>
         </div>
 
         <form onSubmit={handleSubmit} className="formContent">

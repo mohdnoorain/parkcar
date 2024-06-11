@@ -68,7 +68,7 @@
           }
 
           .InPassword {
-            
+
             margin: 0;
             color: red;
           }
@@ -78,8 +78,8 @@
             top: -34px;
             // left: 303px;
             left: 84%;
-          
-            
+
+
             background-color: #F6F6F6;
             color: #5DB075;
             font-size: 16px;
@@ -97,8 +97,14 @@
 
       .bottomForm {
         .checkBox {
+          input[type = "checkBox"] {
+            height: 25px;
+            width: 45px;
+            background-color: red;
+          }
+
           display: flex;
-          align-items: start;
+          align-items: center;
 
           label {
             margin-left: 5px;

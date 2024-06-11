@@ -1,7 +1,8 @@
 import { IonPage } from "@ionic/react";
+import { MdOutlineArrowBackIos } from "react-icons/md";
 import "./verifyPassword.scss";
 import { useState } from "react";
-
+import Timer from "./Timer";
 const verifyPassword = () => {
     const [Otp, setOtp] = useState(['', '', '', '']);
     const handleChange = (index: any, e: any) => {
@@ -21,7 +22,7 @@ const verifyPassword = () => {
         console.log('Entered OTP:', enteredOtp);
         // Clear OTP after submission
         setOtp(['', '', '', '']);
-        window.location.href = "http://localhost:8100/createpassword"
+        window.location.href = "http://localhost:8100/resetPassword"
     }
 
     const handleOnBack = (e: any) => {
@@ -33,7 +34,7 @@ const verifyPassword = () => {
         <form onSubmit={handleSubmit} className="PageContent">
             <div className="HalfPage">
                 <div className="pHeading">
-                    <button onClick={handleOnBack} className="BackBtn"> &#60;</button>
+                    <MdOutlineArrowBackIos onClick={handleOnBack} className="BackBtn" />
                     <h1>Email Verification</h1>
                 </div>
                 <div className="pMiddleContent">
@@ -50,8 +51,9 @@ const verifyPassword = () => {
                     ))}
                 </div>
                 <div className="test">
-                    <p>code expire in :</p>
-                    <a href="">Resend</a>
+
+                    <Timer></Timer>
+
                 </div>
             </div>
             <div className="pBottomContent">
