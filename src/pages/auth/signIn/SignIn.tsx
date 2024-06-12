@@ -13,10 +13,10 @@ const SignIn= () => {
   });
   /// use state for vaild Email 
 
-  const [isValid, setisValid] = useState(true);
+  const [isValidEmail, setisValidEmail] = useState(true);
 
   /// use state for valid password 
-  const [validPassword, setvalidPassword] = useState(true);
+  const [isvalidPassword, setvalidPassword] = useState(true);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -30,7 +30,7 @@ const SignIn= () => {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
     setvalidPassword(passwordRegex.test(formData.password));
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setisValid(emailRegex.test(formData.email));
+    setisValidEmail(emailRegex.test(formData.email));
     
     // history.push('')
   };
@@ -61,9 +61,9 @@ const SignIn= () => {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
-                className={isValid ? 'valid' : 'invalid'}
+                className={isValidEmail ? 'valid' : 'invalid'}
               />
-              {!isValid && <p style={{ color: 'red' }}>Please enter a valid email</p>}
+              {!isValidEmail && <p style={{ color: 'red' }}>Please enter a valid email</p>}
             </div>
             <div className="formField">
               <input
@@ -77,7 +77,7 @@ const SignIn= () => {
               <button onClick={HandleShowPassword}>
                 {ShowPassword ? HidePass : ShowPass}
               </button>
-              {!isValid && <p className="InPassword" >Please enter a valid password</p>}
+              {!isvalidPassword && <p className="InPassword" >Please enter a valid password</p>}
             </div>
           </div>
           {/* bottom form  */}

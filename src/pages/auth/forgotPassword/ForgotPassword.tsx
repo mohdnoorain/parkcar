@@ -25,6 +25,11 @@ const ForgotPassword = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         setisValid(emailRegex.test(formData.email));
         console.log('Email :', formData.email);
+
+        // if user enter wroung or invalid email then return 
+        if (!emailRegex.test(formData.email)){
+            return;
+        }
         // window.location.href = "http://localhost:8100/OtpPage";
         history.push("/OtpPage")
     }
@@ -52,7 +57,7 @@ const ForgotPassword = () => {
                     onChange={handleChange}
                     className={isValid ? 'valid' : 'invalid'}
                 />
-                {!isValid && <p className="InPassword" style={{color:"red"}}>Please enter a valid email</p>}
+                {!isValid && <p className="InPassword" >Please enter a valid email</p>}
             </div>
             <div className="pBottomContent">
                 <button>Recover Password</button>

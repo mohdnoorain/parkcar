@@ -2,6 +2,7 @@ import { IonPage } from "@ionic/react";
 import "./SignUp.scss";
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 const SignUp = () => {
   // use state for taking input of user
@@ -10,10 +11,17 @@ const SignUp = () => {
     email: '',
     password: ''
   });
+ 
+ // when account is already existing in database
+
+  const [existUser, setexistUser] = useState(true);
+
+  // when Name is NULL 
+  const [isValidName, setisValidName] = useState(true);
 
   // use state for vaild email id 
 
-  const [isValid, setisValid] = useState(true);
+  const [isValid, setisValidEmail] = useState(true);
 
   /// use state for valid password 
   const [validPassword, setvalidPassword] = useState(true);
@@ -25,15 +33,33 @@ const SignUp = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Name : ', formData.name);
+
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
     setvalidPassword(passwordRegex.test(formData.password));
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setisValid(emailRegex.test(formData.email));
-    console.log('Email : ', formData.email);
-    console.log('Password : ', formData.password);
+    setisValidEmail(emailRegex.test(formData.email));
 
-    
+    if (formData.name.length == 0) {
+      setisValidName(false);
+    } else {
+      setisValidName(true);
+    }
+
+    if (!emailRegex.test(formData.email) || !(passwordRegex.test(formData.password)) || formData.name.length == 0) {
+      console.log("Invalid data entered");
+      return;
+    }
+
+    const UserData = {
+      fullName: formData.name,
+      email: formData.email,
+      password: formData.password
+    }
+  //  console.log(UserData)
+    axios.post("https://expressbe.onrender.com/api/v1/auth/sign-up", UserData).then((response) => {
+      console.log(response.status, response.data);
+      setexistUser(false)
+    });
 
   }
   const [ShowPassword, setShowPassword] = useState(false);
@@ -53,12 +79,13 @@ const SignUp = () => {
       <div className="pageContent">
 
         <div className="pHeading">
-          
+
           <div>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</div>
           <h1>Sign Up</h1>
           <a href="/signIn"><button>Log in</button></a>
+         
         </div>
-
+        {!existUser && <p className="ExistUser">Account already existing</p>}
         <form onSubmit={handleSubmit} className="formContent">
           {/* topform  */}
           <div className="topForm">
@@ -70,6 +97,7 @@ const SignUp = () => {
                 value={formData.name}
                 onChange={handleChange}
               />
+              {!isValidName && <p style={{ color: 'red' }}>Please enter a name</p>}
             </div>
             <div className="formField">
               <input
@@ -113,7 +141,7 @@ const SignUp = () => {
               Sign Up
             </button>
 
-           
+
           </div>
 
         </form>

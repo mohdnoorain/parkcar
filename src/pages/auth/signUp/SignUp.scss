@@ -10,7 +10,7 @@
     padding: 20px 15px;
     display: flex;
     flex-direction: column;
-
+  
     .pHeading {
       display: flex;
       align-items: center;
@@ -29,7 +29,12 @@
         background-color: white;
       }
     }
-
+    .ExistUser{
+      margin: 0;
+      padding-top: 10px;
+      text-align: center;
+      color: #5DB075;
+    }
     .formContent {
       flex-grow: 1;
       display: flex;

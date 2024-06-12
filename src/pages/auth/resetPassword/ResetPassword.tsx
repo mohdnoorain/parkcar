@@ -23,13 +23,15 @@ const resetPassword = () => {
         e.preventDefault();
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
         setvalidPassword(passwordRegex.test(formData.password));
-        console.log('Password', formData.password);
-        console.log('Password', formData.confirmPassword);
-        if (formData.password !== formData.confirmPassword) {
+       
+        if (formData.password !== formData.confirmPassword || !passwordRegex.test(formData.password)) {
             setsamePassword(false);
+            return ;
         } else {
             setsamePassword(true);
         }
+        console.log('Password', formData.password);
+        console.log('Password', formData.confirmPassword);
     }
     const handleOnBack = (e: any) => {
         e.preventDefault();
