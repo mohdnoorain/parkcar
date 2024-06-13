@@ -3,6 +3,7 @@ import "./SignUp.scss";
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const SignUp = () => {
   // use state for taking input of user
@@ -11,20 +12,17 @@ const SignUp = () => {
     email: '',
     password: ''
   });
- 
- // when account is already existing in database
-
+  // when account is already existing in database
+  const [isLoading, setIsloading] = useState(false);
   const [existUser, setexistUser] = useState(true);
+  const [isValidName, setisValidName] = useState(true);  // when Name is NULL 
+  const [isValid, setisValidEmail] = useState(true); // use state for vaild email id 
+  const [validPassword, setvalidPassword] = useState(true);   /// use state for valid password 
+  const [ShowPassword, setShowPassword] = useState(false);
+  let ShowPass = "show";
+  let HidePass = "hide";
 
-  // when Name is NULL 
-  const [isValidName, setisValidName] = useState(true);
-
-  // use state for vaild email id 
-
-  const [isValid, setisValidEmail] = useState(true);
-
-  /// use state for valid password 
-  const [validPassword, setvalidPassword] = useState(true);
+  const history = useHistory()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -55,24 +53,26 @@ const SignUp = () => {
       email: formData.email,
       password: formData.password
     }
-  //  console.log(UserData)
+    //  console.log(UserData)
+    setIsloading(true)
     axios.post("https://expressbe.onrender.com/api/v1/auth/sign-up", UserData).then((response) => {
-      console.log(response.status, response.data);
-      setexistUser(false)
-    });
+      setIsloading(false)
+      console.log("signp res:", response.status, response.data);
+      if (response.status === 200) {
+        setexistUser(false)
+      } else {
+        history.push("/OtpPage")
+      }
+    }).catch((error) => {
+      setIsloading(false)
+    })
 
   }
-  const [ShowPassword, setShowPassword] = useState(false);
-  let ShowPass = "show";
-  let HidePass = "hide";
 
   const HandleShowPassword = (e: any) => {
     e.preventDefault();
     setShowPassword(!ShowPassword);
   }
-
-
-
 
   return (
     <IonPage className="SignUpPage">
@@ -83,7 +83,7 @@ const SignUp = () => {
           <div>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</div>
           <h1>Sign Up</h1>
           <a href="/signIn"><button>Log in</button></a>
-         
+
         </div>
         {!existUser && <p className="ExistUser">Account already existing</p>}
         <form onSubmit={handleSubmit} className="formContent">
@@ -138,7 +138,7 @@ const SignUp = () => {
               </label>
             </div>
             <button className="submitBtn" type="submit">
-              Sign Up
+              {isLoading ? "Loading" : "Sign Up"}
             </button>
 
 

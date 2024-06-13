@@ -1,6 +1,6 @@
 import { IonPage } from "@ionic/react";
 import { MdOutlineArrowBackIos } from "react-icons/md";
-import "./verifyPassword.scss";
+import "./Verifypassword.scss";
 import { useState } from "react";
 import Timer from "./Timer";
 const verifyPassword = () => {

@@ -1,6 +1,6 @@
 import { IonPage } from "@ionic/react";
 import { MdOutlineArrowBackIos } from "react-icons/md";
-import "./resetPassword.scss";
+import "./ResetPassword.scss";
 import { useState } from "react";
 const resetPassword = () => {
     // use state for taking input of user
@@ -23,10 +23,10 @@ const resetPassword = () => {
         e.preventDefault();
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
         setvalidPassword(passwordRegex.test(formData.password));
-       
+
         if (formData.password !== formData.confirmPassword || !passwordRegex.test(formData.password)) {
             setsamePassword(false);
-            return ;
+            return;
         } else {
             setsamePassword(true);
         }
@@ -66,7 +66,7 @@ const resetPassword = () => {
                     onChange={handleChange}
                     className={validPassword ? 'valid' : 'invalid'}
                 />
-                <button className= "ShowPassword"onClick={HandleShowPassword}>
+                <button className="ShowPassword" onClick={HandleShowPassword}>
                     {ShowPassword ? HidePass : ShowPass}
                 </button>
                 {!validPassword && <p className="InPassword" >Please enter a valid password</p>}
