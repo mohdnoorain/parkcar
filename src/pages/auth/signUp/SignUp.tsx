@@ -1,4 +1,4 @@
-import { IonPage } from "@ionic/react";
+import { IonButton, useIonToast,IonPage, IonLoading } from '@ionic/react';
 import "./SignUp.scss";
 import React from "react";
 import { useState } from "react";
@@ -13,6 +13,7 @@ const SignUp = () => {
     password: ''
   });
   // when account is already existing in database
+  const [Apimessage,setApimesage] = useState('Acount already existing');
   const [isLoading, setIsloading] = useState(false);
   const [existUser, setexistUser] = useState(true);
   const [isValidName, setisValidName] = useState(true);  // when Name is NULL 
@@ -27,6 +28,18 @@ const SignUp = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+
+  const [present] = useIonToast();
+
+  const presentToast = (position: 'top' | 'middle' | 'bottom') => {
+    present({
+      message: Apimessage,
+      duration: 2000,
+      position: position,
+      cssClass: 'custom-toast',
+    });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,8 +71,10 @@ const SignUp = () => {
     axios.post("https://expressbe.onrender.com/api/v1/auth/sign-up", UserData).then((response) => {
       setIsloading(false)
       console.log("signp res:", response.status, response.data);
+      
       if (response.status === 200) {
-        setexistUser(false)
+        setApimesage(response.data.message)
+        presentToast('top')
       } else {
         history.push("/OtpPage")
       }
@@ -97,7 +112,6 @@ const SignUp = () => {
                 value={formData.name}
                 onChange={handleChange}
               />
-              {!isValidName && <p style={{ color: 'red' }}>Please enter a name</p>}
             </div>
             <div className="formField">
               <input
@@ -138,9 +152,14 @@ const SignUp = () => {
               </label>
             </div>
             <button className="submitBtn" type="submit">
-              {isLoading ? "Loading" : "Sign Up"}
+              Sign Up
             </button>
-
+            
+            <IonLoading
+              isOpen={isLoading}
+              message="Loading..."
+              className="custom-loading" // Apply the custom class here
+            />
 
           </div>
 

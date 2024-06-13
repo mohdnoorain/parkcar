@@ -31,7 +31,7 @@ const ForgotPassword = () => {
             return;
         }
         // window.location.href = "http://localhost:8100/OtpPage";
-        history.push("/OtpPage")
+        history.push("/resetPassword")
     }
 
     const handleOnBack = (e: any) => {

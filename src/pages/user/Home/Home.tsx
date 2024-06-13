@@ -1,8 +1,11 @@
+import { IonButton, IonLoading } from "@ionic/react"
+
 const Home = () => {
     return (
-        <h1>
-            Home
-        </h1>
+        <>
+        <IonButton id="open-loading">Show Loading</IonButton>
+        <IonLoading className="custom-loading" trigger="open-loading" message="Loading"  />
+        </>
     )
 }
 
