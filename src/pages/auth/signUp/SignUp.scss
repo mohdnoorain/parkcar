@@ -10,7 +10,7 @@ ion-loading.custom-loading {
   --background: #f9f7f7;
   text-align: center;
   color: rgb(241, 8, 8);
-
+  border-radius: 10px;
 }
 .SignUpPage {
   background-color: #fff;
@@ -114,12 +114,14 @@ ion-loading.custom-loading {
 
       .bottomForm {
         .checkBox {
-          input[type = "checkBox"] {
-            height: 25px;
-            width: 45px;
-            background-color: red;
-          }
-
+          
+        .LargeCheckBox{
+          --border-color-checked:#5DB075;
+          --size:30px;
+          --border-radius:50%;
+          --checkbox-background-checked:#5DB075;
+          
+        }
           display: flex;
           align-items: center;
 

@@ -1,4 +1,18 @@
 /// main class
+ion-loading.custom-loading {
+
+    --spinner-color: #1c6dff;
+
+    color: #1c6dff;
+}
+
+.custom-toast {
+    --background: #f9f7f7;
+    text-align: center;
+    color: rgb(241, 8, 8);
+    border-radius: 10px;
+}
+
 
 .SignInPage {
     background-color: #fff;
@@ -76,7 +90,7 @@
                         position: relative;
                         top: -34px;
                         left: 84%;
-                        background-color: #F6F6F6;
+                        background-color: transparent;
                         color: #5DB075;
                         font-size: 16px;
                         font-weight: 500;

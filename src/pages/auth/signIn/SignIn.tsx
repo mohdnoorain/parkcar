@@ -1,10 +1,16 @@
-import { IonPage } from "@ionic/react";
+import { IonLoading, IonPage, useIonToast } from "@ionic/react";
 import "./SignIn.scss";
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router";
+import axios from "axios";
 const SignIn= () => {
-
+  const [Apimessage, setApimesage] = useState('');
+  const [isLoading, setIsloading] = useState(false);
+  const [isValidEmail, setisValidEmail] = useState(true);
+  const [isvalidPassword, setvalidPassword] = useState(true);  /// use state for valid password 
+  const [present] = useIonToast();
+  
   const history = useHistory()
   // use state for taking input of user
   const [formData, setFormData] = useState({
@@ -13,10 +19,16 @@ const SignIn= () => {
   });
   /// use state for vaild Email 
 
-  const [isValidEmail, setisValidEmail] = useState(true);
+  const presentToast = (position: "top" | "middle" | "bottom",message:string="") => {
+    console.log("this is loading calling ")
+    present({
+      message: Apimessage,
+      duration: 2000,
+      position: position,
+      cssClass: "custom-toast",
+    });
+  };
 
-  /// use state for valid password 
-  const [isvalidPassword, setvalidPassword] = useState(true);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -31,8 +43,30 @@ const SignIn= () => {
     setvalidPassword(passwordRegex.test(formData.password));
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setisValidEmail(emailRegex.test(formData.email));
+    const UserData = {
+      email: formData.email,
+      password: formData.password,
+    };
+    setIsloading(true);
+    axios
+      .post("https://expressbe.onrender.com/api/v1/auth/sign-in", UserData)
+      .then((response) => {
+        setIsloading(false);
+
+        console.log("signp res:", response.status, response.data);
+        setApimesage(response.data.message);
+
+        if (response.status === 200) {
+        
+          presentToast("top","");
+        } else {
+          history.push("/OtpPage");
+        }
+      })
+      .catch((error) => {
+        setIsloading(false);
+      });
     
-    // history.push('')
   };
   const [ShowPassword, setShowPassword] = useState(false);
   let ShowPass = "show";
@@ -85,7 +119,11 @@ const SignIn= () => {
             <button className="submitBtn" type="submit">
               Log In
             </button>
-
+            <IonLoading
+              isOpen={isLoading}
+              message="Loading..."
+              className="custom-loading" // Apply the custom class here
+            />
             <a href="/forgotPassword">Forgot your password?</a>
           </div>
         </form>

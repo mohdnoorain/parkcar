@@ -1,4 +1,4 @@
-import { IonButton, useIonToast,IonPage, IonLoading } from '@ionic/react';
+import { IonCheckbox, useIonToast, IonPage, IonLoading } from "@ionic/react";
 import "./SignUp.scss";
 import React from "react";
 import { useState } from "react";
@@ -8,37 +8,36 @@ import { useHistory } from "react-router";
 const SignUp = () => {
   // use state for taking input of user
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
+    name: "",
+    email: "",
+    password: "",
   });
   // when account is already existing in database
-  const [Apimessage,setApimesage] = useState('Acount already existing');
+  const [Apimessage, setApimesage] = useState();
   const [isLoading, setIsloading] = useState(false);
   const [existUser, setexistUser] = useState(true);
-  const [isValidName, setisValidName] = useState(true);  // when Name is NULL 
-  const [isValid, setisValidEmail] = useState(true); // use state for vaild email id 
-  const [validPassword, setvalidPassword] = useState(true);   /// use state for valid password 
+  const [isValidName, setisValidName] = useState(true); // when Name is NULL
+  const [isValid, setisValidEmail] = useState(true); // use state for vaild email id
+  const [validPassword, setvalidPassword] = useState(true); /// use state for valid password
   const [ShowPassword, setShowPassword] = useState(false);
   let ShowPass = "show";
   let HidePass = "hide";
 
-  const history = useHistory()
+  const history = useHistory();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-
   const [present] = useIonToast();
 
-  const presentToast = (position: 'top' | 'middle' | 'bottom') => {
+  const presentToast = (position: "top" | "middle" | "bottom") => {
     present({
       message: Apimessage,
       duration: 2000,
       position: position,
-      cssClass: 'custom-toast',
+      cssClass: "custom-toast",
     });
   };
 
@@ -56,7 +55,11 @@ const SignUp = () => {
       setisValidName(true);
     }
 
-    if (!emailRegex.test(formData.email) || !(passwordRegex.test(formData.password)) || formData.name.length == 0) {
+    if (
+      !emailRegex.test(formData.email) ||
+      !passwordRegex.test(formData.password) ||
+      formData.name.length == 0
+    ) {
       console.log("Invalid data entered");
       return;
     }
@@ -64,41 +67,41 @@ const SignUp = () => {
     const UserData = {
       fullName: formData.name,
       email: formData.email,
-      password: formData.password
-    }
+      password: formData.password,
+    };
     //  console.log(UserData)
-    setIsloading(true)
-    axios.post("https://expressbe.onrender.com/api/v1/auth/sign-up", UserData).then((response) => {
-      setIsloading(false)
-      console.log("signp res:", response.status, response.data);
-      
-      if (response.status === 200) {
-        setApimesage(response.data.message)
-        presentToast('top')
-      } else {
-        history.push("/OtpPage")
-      }
-    }).catch((error) => {
-      setIsloading(false)
-    })
-
-  }
+    setIsloading(true);
+    axios
+      .post("https://expressbe.onrender.com/api/v1/auth/sign-up", UserData)
+      .then((response) => {
+        setIsloading(false);
+        console.log("signp res:", response.status, response.data);
+        setApimesage(response.data.message);
+        if (response.status === 200) {
+          presentToast("top");
+        } else {
+          history.push("/OtpPage");
+        }
+      })
+      .catch((error) => {
+        setIsloading(false);
+      });
+  };
 
   const HandleShowPassword = (e: any) => {
     e.preventDefault();
     setShowPassword(!ShowPassword);
-  }
+  };
 
   return (
     <IonPage className="SignUpPage">
       <div className="pageContent">
-
         <div className="pHeading">
-
           <div>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</div>
           <h1>Sign Up</h1>
-          <a href="/signIn"><button>Log in</button></a>
-
+          <a href="/signIn">
+            <button>Log in</button>
+          </a>
         </div>
         {!existUser && <p className="ExistUser">Account already existing</p>}
         <form onSubmit={handleSubmit} className="formContent">
@@ -120,9 +123,11 @@ const SignUp = () => {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
-                className={isValid ? 'valid' : 'invalid'}
+                className={isValid ? "valid" : "invalid"}
               />
-              {!isValid && <p style={{ color: 'red' }}>Please enter a valid email</p>}
+              {!isValid && (
+                <p style={{ color: "red" }}>Please enter a valid email</p>
+              )}
             </div>
             <div className="formField">
               <input
@@ -131,40 +136,40 @@ const SignUp = () => {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                className={validPassword ? 'valid' : 'invalid'}
+                className={validPassword ? "valid" : "invalid"}
               />
               <button onClick={HandleShowPassword}>
                 {ShowPassword ? HidePass : ShowPass}
               </button>
-              {!validPassword && <p className="InPassword" >Please enter a valid password</p>}
+              {!validPassword && (
+                <p className="InPassword">Please enter a valid password</p>
+              )}
             </div>
           </div>
           {/* bottom form  */}
           <div className="bottomForm">
             <div className="checkBox">
-              <input
+              <IonCheckbox
                 id="terms"
-                type="checkbox"
-                className="LargeCheckBox"
-              />
+                className="LargeCheckBox">
+              </IonCheckbox>
               <label htmlFor="terms">
-                I would like to receive your newsletter and other promotional information.
+                I would like to receive your newsletter and other promotional
+                information.
               </label>
             </div>
+           
             <button className="submitBtn" type="submit">
               Sign Up
             </button>
-            
+
             <IonLoading
               isOpen={isLoading}
               message="Loading..."
               className="custom-loading" // Apply the custom class here
             />
-
           </div>
-
         </form>
-
       </div>
     </IonPage>
   );
