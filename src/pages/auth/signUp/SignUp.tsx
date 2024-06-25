@@ -4,6 +4,8 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   // use state for taking input of user
@@ -12,8 +14,7 @@ const SignUp = () => {
     email: "",
     password: "",
   });
-  // when account is already existing in database
-  const [Apimessage, setApimesage] = useState();
+  const navigate = useNavigate();
   const [isLoading, setIsloading] = useState(false);
   const [existUser, setexistUser] = useState(true);
   const [isValidName, setisValidName] = useState(true); // when Name is NULL
@@ -32,7 +33,7 @@ const SignUp = () => {
 
   const [present] = useIonToast();
 
-  const presentToast = (position: "top" | "middle" | "bottom") => {
+  const presentToast = (position:any , Apimessage : any) => {
     present({
       message: Apimessage,
       duration: 2000,
@@ -76,11 +77,10 @@ const SignUp = () => {
       .then((response) => {
         setIsloading(false);
         console.log("signp res:", response.status, response.data);
-        setApimesage(response.data.message);
-        if (response.status === 200) {
-          presentToast("top");
+        if (response.data.type === "success") {
+          navigate(`/otpPage/signIn/${formData.email}`);
         } else {
-          history.push("/OtpPage");
+          presentToast("top", response.data.message);
         }
       })
       .catch((error) => {
@@ -99,9 +99,9 @@ const SignUp = () => {
         <div className="pHeading">
           <div>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</div>
           <h1>Sign Up</h1>
-          <a href="/signIn">
+          <Link to="/signIn">
             <button>Log in</button>
-          </a>
+          </Link>
         </div>
         {!existUser && <p className="ExistUser">Account already existing</p>}
         <form onSubmit={handleSubmit} className="formContent">

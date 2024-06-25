@@ -1,9 +1,13 @@
-import { IonPage } from "@ionic/react";
+import { IonLoading, IonPage, useIonToast } from "@ionic/react";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import "./ResetPassword.scss";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 const resetPassword = () => {
-    // use state for taking input of user
+    const navigate = useNavigate();
+    const [isLoading, setIsloading] = useState(false);
+    const { userEmail } = useParams();
     const [formData, setFormData] = useState({
         password: '',
         confirmPassword: '',
@@ -19,6 +23,17 @@ const resetPassword = () => {
         setFormData({ ...formData, [name]: value });
     };
 
+    const [present] = useIonToast();
+
+    const presentToast = (position: any, Apimessage: any) => {
+        present({
+            message: Apimessage,
+            duration: 2000,
+            position: position,
+            cssClass: "custom-toast",
+        });
+    };
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
@@ -32,11 +47,33 @@ const resetPassword = () => {
         }
         console.log('Password', formData.password);
         console.log('Password', formData.confirmPassword);
+        console.log("userEmail is " , userEmail);
+        const UserData = {
+            email: userEmail,
+            password: formData.confirmPassword,
+        };
+        setIsloading(true)
+        axios
+            .post("https://expressbe.onrender.com/api/v1/auth/reset-password", UserData)
+            .then((response) => {
+                setIsloading(false);
+                console.log("signp res:", response.status, response.data);
+
+                if (response.data.type === "success") {
+                    navigate(`/signIn`);
+                } else {
+                    presentToast("top", response.data.message);
+                    console.log(response.data.message);
+                }
+            })
+            .catch((error) => {
+                setIsloading(false);
+                console.log("error")
+            });
     }
     const handleOnBack = (e: any) => {
         e.preventDefault();
-        console.log("back is clicked");
-        window.history.back();
+        navigate(-1);
     }
 
     const [ShowPassword, setShowPassword] = useState(false);
@@ -81,6 +118,11 @@ const resetPassword = () => {
             </div>
             <div className="pBottomContent">
                 <button>Continue</button>
+                <IonLoading
+                    isOpen={isLoading}
+                    message="Loading..."
+                    className="custom-loading"
+                />
             </div>
         </form>
     </IonPage>

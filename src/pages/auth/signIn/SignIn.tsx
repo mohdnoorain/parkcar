@@ -4,13 +4,15 @@ import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
-const SignIn= () => {
-  const [Apimessage, setApimesage] = useState('');
+import { Link, Navigate, useNavigate } from "react-router-dom";
+const SignIn = () => {
+
   const [isLoading, setIsloading] = useState(false);
   const [isValidEmail, setisValidEmail] = useState(true);
   const [isvalidPassword, setvalidPassword] = useState(true);  /// use state for valid password 
+  const navigate = useNavigate();
   const [present] = useIonToast();
-  
+
   const history = useHistory()
   // use state for taking input of user
   const [formData, setFormData] = useState({
@@ -19,8 +21,7 @@ const SignIn= () => {
   });
   /// use state for vaild Email 
 
-  const presentToast = (position: "top" | "middle" | "bottom",message:string="") => {
-    console.log("this is loading calling ")
+  const presentToast = (position: any, Apimessage: any) => {
     present({
       message: Apimessage,
       duration: 2000,
@@ -43,6 +44,13 @@ const SignIn= () => {
     setvalidPassword(passwordRegex.test(formData.password));
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setisValidEmail(emailRegex.test(formData.email));
+    if (
+      !emailRegex.test(formData.email) ||
+      !passwordRegex.test(formData.password)
+    ) {
+      console.log("Invalid data entered");
+      return;
+    }
     const UserData = {
       email: formData.email,
       password: formData.password,
@@ -54,19 +62,20 @@ const SignIn= () => {
         setIsloading(false);
 
         console.log("signp res:", response.status, response.data);
-        setApimesage(response.data.message);
 
-        if (response.status === 200) {
-        
-          presentToast("top","");
-        } else {
-          history.push("/OtpPage");
+
+        if (response.data.type === "success") {
+          navigate("/home");
+        } if (response.data.type === "info") {
+          console.log(response.data.type);
+          presentToast("top", response.data.message);
         }
       })
-      .catch((error) => {
+      .catch((response) => {
         setIsloading(false);
+        presentToast("top", response.type);
       });
-    
+
   };
   const [ShowPassword, setShowPassword] = useState(false);
   let ShowPass = "show";
@@ -82,7 +91,7 @@ const SignIn= () => {
         <div className="pHeading">
           <div>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</div>
           <h1>Log In</h1>
-          <a href="/signUp"><button>Sign Up</button></a>
+          <Link to="/signUp"><button>Sign Up</button></Link>
         </div>
 
         <form onSubmit={handleSubmit} className="formContent">
@@ -124,7 +133,7 @@ const SignIn= () => {
               message="Loading..."
               className="custom-loading" // Apply the custom class here
             />
-            <a href="/forgotPassword">Forgot your password?</a>
+            <Link to="/forgotPassword">Forgot your password?</Link>
           </div>
         </form>
       </div>
