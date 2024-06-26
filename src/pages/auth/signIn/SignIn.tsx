@@ -71,9 +71,9 @@ const SignIn = () => {
           presentToast("top", response.data.message);
         }
       })
-      .catch((response) => {
+      .catch((error) => {
         setIsloading(false);
-        presentToast("top", response.type);
+        presentToast("top", error.response.data.message);
       });
 
   };
