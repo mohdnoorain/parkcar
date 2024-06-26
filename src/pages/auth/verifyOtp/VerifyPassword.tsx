@@ -12,7 +12,7 @@ const verifyPassword = () => {
     const [present] = useIonToast();
     const [isLoading, setIsloading] = useState(false);
     const [Otp, setOtp] = useState(['', '', '', '']);
-    
+
     const handleChange = (index: any, e: any) => {
         const value = e.target.value;
         const newOtp = [...Otp];
@@ -53,13 +53,13 @@ const verifyPassword = () => {
 
                 if (response.data.type === "success") {
                     setOtp(['', '', '', '']);
-                    if (userId === "signIn"){
-                        navigate(`/signIn`);
-                    }else
-                        if (userId === "resetPassword"){
-                            navigate(`/${userId}/${userEmail}`);
+                    if (userId === "signIn") {
+                        navigate(`/auth/signIn`);
+                    } else
+                        if (userId === "resetPassword") {
+                            navigate(`/auth/${userId}/${userEmail}`);
                         }
-                    
+
                 } else {
                     presentToast("top", response.data.message);
                     console.log(response.data.message);

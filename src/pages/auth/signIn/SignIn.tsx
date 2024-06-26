@@ -91,7 +91,7 @@ const SignIn = () => {
         <div className="pHeading">
           <div>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</div>
           <h1>Log In</h1>
-          <Link to="/signUp"><button>Sign Up</button></Link>
+          <Link to="/auth/signUp"><button>Sign Up</button></Link>
         </div>
 
         <form onSubmit={handleSubmit} className="formContent">
@@ -133,7 +133,7 @@ const SignIn = () => {
               message="Loading..."
               className="custom-loading" // Apply the custom class here
             />
-            <Link to="/forgotPassword">Forgot your password?</Link>
+            <Link to="/auth/forgotPassword">Forgot your password?</Link>
           </div>
         </form>
       </div>

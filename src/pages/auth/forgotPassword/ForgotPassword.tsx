@@ -46,7 +46,7 @@ const ForgotPassword = () => {
                 console.log("signp res:", response.status, response.data);
 
                 if (response.data.type === "success") {
-                    navigate(`/otpPage/resetPassword/${formData.email}`);
+                    navigate(`/auth/otpPage/resetPassword/${formData.email}`);
                 }
             })
             .catch((error) => {
@@ -83,7 +83,7 @@ const ForgotPassword = () => {
             </div>
             <div className="pBottomContent">
                 <button>Recover Password</button>
-                 <IonLoading
+                <IonLoading
                     isOpen={isLoading}
                     message="Loading..."
                     className="custom-loading" // Apply the custom class here

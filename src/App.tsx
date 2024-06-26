@@ -3,21 +3,27 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import "./App.scss"
-import SignUp from './pages/auth/signUp/SignUp';
-import SignIn from './pages/auth/signIn/SignIn';
-import ForgotPassword from './pages/auth/forgotPassword/ForgotPassword';
 import Home from './pages/user/Home/Home';
-import VerifyPassword from './pages/auth/verifyOtp/VerifyPassword';
-import ResetPassword from './pages/auth/resetPassword/ResetPassword';
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, Outlet, RouteObject } from "react-router-dom";
+import AuthLayout from './layouts/AuthLayout';
+import AuthRoutes from './routes/authRoutes';
+import UserLayout from './layouts/UserLayout';
+
 const router = createBrowserRouter([
-  { path: "/", element: <SignUp /> },
-  { path: "/signUp", element: <SignUp /> },
-  { path: "/signIn", element: <SignIn /> },
-  { path: "/forgotPassword", element: <ForgotPassword /> },
-  { path: "/otpPage/:userId/:userEmail", element: <VerifyPassword /> },
-  { path: "/resetPassword/:userEmail", element: <ResetPassword /> },
-  { path: "/home", element: <Home /> },
+  {
+    path: "/auth",
+    element: <AuthLayout />,
+    children: AuthRoutes
+  },
+  {
+    path: "/user", element: <UserLayout />,
+    children: [
+      {
+        path: "",
+        element: <Home />
+      }
+    ]
+  },
 ])
 setupIonicReact();
 const App = () => (

@@ -47,7 +47,7 @@ const resetPassword = () => {
         }
         console.log('Password', formData.password);
         console.log('Password', formData.confirmPassword);
-        console.log("userEmail is " , userEmail);
+        console.log("userEmail is ", userEmail);
         const UserData = {
             email: userEmail,
             password: formData.confirmPassword,
@@ -60,7 +60,7 @@ const resetPassword = () => {
                 console.log("signp res:", response.status, response.data);
 
                 if (response.data.type === "success") {
-                    navigate(`/signIn`);
+                    navigate(`/auth/signIn`);
                 } else {
                     presentToast("top", response.data.message);
                     console.log(response.data.message);

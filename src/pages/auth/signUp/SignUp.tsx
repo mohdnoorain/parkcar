@@ -33,7 +33,7 @@ const SignUp = () => {
 
   const [present] = useIonToast();
 
-  const presentToast = (position:any , Apimessage : any) => {
+  const presentToast = (position: any, Apimessage: any) => {
     present({
       message: Apimessage,
       duration: 2000,
@@ -78,7 +78,7 @@ const SignUp = () => {
         setIsloading(false);
         console.log("signp res:", response.status, response.data);
         if (response.data.type === "success") {
-          navigate(`/otpPage/signIn/${formData.email}`);
+          navigate(`/auth/otpPage/signIn/${formData.email}`);
         } else {
           presentToast("top", response.data.message);
         }
@@ -99,7 +99,7 @@ const SignUp = () => {
         <div className="pHeading">
           <div>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</div>
           <h1>Sign Up</h1>
-          <Link to="/signIn">
+          <Link to="/auth/signIn">
             <button>Log in</button>
           </Link>
         </div>
@@ -158,7 +158,7 @@ const SignUp = () => {
                 information.
               </label>
             </div>
-           
+
             <button className="submitBtn" type="submit">
               Sign Up
             </button>
