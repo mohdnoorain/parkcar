@@ -1,13 +1,16 @@
-import React from "react";
-
 import { RouteObject } from "react-router-dom";
 import SignUp from "../pages/auth/signUp/SignUp";
 import SignIn from "../pages/auth/signIn/SignIn";
 import ForgotPassword from "../pages/auth/forgotPassword/ForgotPassword";
 import ResetPassword from "../pages/auth/resetPassword/ResetPassword";
 import VerifyPassword from "../pages/auth/verifyOtp/VerifyPassword";
+import RedirectTo from "../utilityMethods/RedirectTo";
 
 const AuthRoutes: RouteObject[] = [
+    {
+        path: "",
+        element: <RedirectTo goto="signUp" />
+    },
     {
         path: "signUp",
         element: <SignUp />

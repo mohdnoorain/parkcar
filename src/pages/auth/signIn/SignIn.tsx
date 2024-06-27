@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { AUTH_TOKEN_KEY } from "../../../constants/contants";
 const SignIn = () => {
 
   const [isLoading, setIsloading] = useState(false);
@@ -65,9 +66,9 @@ const SignIn = () => {
 
 
         if (response.data.type === "success") {
-          const token = response.data.body.token ;
-         localStorage.setItem('authToken',token);
-          navigate("/user/home");
+          const token = response.data.body.token;
+          localStorage.setItem(AUTH_TOKEN_KEY, token);
+          navigate("/user");
         } if (response.data.type === "info") {
           console.log(response.data.type);
           presentToast("top", response.data.message);
