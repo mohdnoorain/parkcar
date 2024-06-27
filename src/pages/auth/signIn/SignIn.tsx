@@ -65,7 +65,9 @@ const SignIn = () => {
 
 
         if (response.data.type === "success") {
-          navigate("/home");
+          const token = response.data.body.token ;
+         localStorage.setItem('authToken',token);
+          navigate("/user/home");
         } if (response.data.type === "info") {
           console.log(response.data.type);
           presentToast("top", response.data.message);

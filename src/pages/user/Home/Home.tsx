@@ -1,10 +1,15 @@
 import { IonButton, IonLoading } from "@ionic/react"
 
+
+
 const Home = () => {
+    const handleSignOut =()=>{
+        localStorage.removeItem('authToken');
+    }
     return (
         <>
-        <IonButton id="open-loading">home</IonButton>
-        <IonLoading className="custom-loading" trigger="open-loading" message="Loading"  />
+        <IonButton onClick={handleSignOut} >Sign Out</IonButton>
+        
         </>
     )
 }
