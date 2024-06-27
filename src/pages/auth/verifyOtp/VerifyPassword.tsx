@@ -77,7 +77,7 @@ const verifyPassword = () => {
         e.preventDefault();
         navigate(-1);
     }
-    return <IonPage className="EmailRecoveryPage">
+    return <IonPage className="VerifyPassword">
         <form onSubmit={handleSubmit} className="PageContent">
             <div className="HalfPage">
                 <div className="pHeading">

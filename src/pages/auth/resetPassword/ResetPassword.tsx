@@ -84,7 +84,7 @@ const resetPassword = () => {
         e.preventDefault();
         setShowPassword(!ShowPassword);
     }
-    return <IonPage className="EmailRecoveryPage">
+    return <IonPage className="Resetpassword">
         <form onSubmit={handleSubmit} className="PageContent">
             <div className="HalfPage">
                 <div className="pHeading">

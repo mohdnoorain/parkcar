@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Timer = (userEmail:any) => {
-    const [timeLeft, setTimeLeft] = useState(10);
+    const [timeLeft, setTimeLeft] = useState(300);
     useEffect(() => {
         if (timeLeft > 0) {
             const timer = setTimeout(() => {

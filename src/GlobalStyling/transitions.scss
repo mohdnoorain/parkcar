@@ -72,3 +72,18 @@
 //     transform: scale(0.8);
 //     transition: opacity 600ms ease, clip-path 600ms ease, transform 600ms ease;
 // }
+
+
+  ion-loading.custom-loading {
+
+      --spinner-color: #1c6dff;
+
+      color: #1c6dff;
+  }
+
+  .custom-toast {
+      --background: #f9f7f7;
+      text-align: center;
+      color: rgb(241, 8, 8);
+      border-radius: 10px;
+  }

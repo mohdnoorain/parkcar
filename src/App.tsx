@@ -3,13 +3,14 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import "./App.scss"
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Outlet, RouterProvider, createBrowserRouter, useLocation } from "react-router-dom";
 import AuthLayout from './layouts/AuthLayout';
 
 import UserLayout from './layouts/UserLayout';
 import AuthRoutes from './routes/AuthRoutes';
 import RedirectTo from './utilityMethods/RedirectTo';
 import UserRoutes from './routes/UserRoutes';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <RedirectTo goto="/home" />
+    element: <RedirectTo goto="/user" />
   }
 ]);
 
@@ -41,3 +42,4 @@ const App = () => (
 );
 
 export default App;
+
